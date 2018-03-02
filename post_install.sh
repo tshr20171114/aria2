@@ -20,11 +20,10 @@ echo ${postgres_dbname}
 export PGPASSWORD=${postgres_password}
 
 psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
-CREATE TABLE t_pattern (
- pattern_id int primary key
-,preg_match_pattern character varying(255) NOT NULL
-,preg_replace_pattern character varying(255)
-,replacement character varying(255)
+CREATE TABLE t_file (
+ file_id int primary key
+,file_name character varying(255) NOT NULL
+,file_data text
 );
 __HEREDOC__
 cat /tmp/sql_result.txt
