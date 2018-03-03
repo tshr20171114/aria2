@@ -16,6 +16,12 @@ $statement->execute();
 
 $result = $statement->fetch();
 
-file_put_contents($arg . '.br', base64_decode($result['file_data']));
+file_put_contents('/tmp/file_data', base64_decode($result['file_data']));
+
+header('Content-Disposition: inline; filename="filedata.dat"');
+header('Content-Length: ' . filesize('/tmp/file_data'));
+header('Content-Type: application/octet-stream');
+
+echo file_get_contents('/tmp/file_data');
 
 ?>
