@@ -26,4 +26,6 @@ curl -r ${range1}-${len} -o file.49 $url &
 
 wait
 
+cat file.* filedata.dat
+
 ls -lang
