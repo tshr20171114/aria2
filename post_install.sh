@@ -40,12 +40,6 @@ SELECT file_base64_text
  WHERE file_name = 'usr_aria2.tar.bz2'
 __HEREDOC__
 
-psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result2.txt << __HEREDOC__
-DELETE
-  FROM t_files
- WHERE file_name = 'usr_aria2.tar.bz2'
-__HEREDOC__
-
 # ***** /tmp/usr *****
 
 cd /tmp
@@ -66,6 +60,12 @@ if [ -e /tmp/usr/bin/aria2c ]; then
   chmod +x ${HOME2}/bin/aria2c
   exit
 fi
+
+psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
+DELETE
+  FROM t_files
+ WHERE file_name = 'usr_aria2.tar.bz2'
+__HEREDOC__
 
 ls -Rlang usr
 
