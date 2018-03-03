@@ -38,6 +38,26 @@ SELECT file_name
 __HEREDOC__
 cat /tmp/sql_result.txt
 
+psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
+SELECT file_base64_text
+  FROM t_files
+ WHERE file_name = 'usr_aria2.tar.bz2'
+__HEREDOC__
+
+# ***** /tmp/usr *****
+
+cd /tmp
+
+mkdir -m 777 usr
+
+set +x
+echo $(cat /tmp/sql_result.txt | head -n 3 | tail -n 1) > /tmp/usr.tar.bz2.base64.txt
+set -x
+base64 -d /tmp/usr.tar.bz2.base64.txt > /tmp/usr.tar.bz2
+tar xf /tmp/usr.tar.bz2 -C /tmp/usr --strip=1
+
+ls -Rlang usr
+
 # ***** aria2 *****
 
 cd /tmp
@@ -49,7 +69,7 @@ tar xvf aria2-1.33.1.tar.bz2
 cd aria2-1.33.1
 
 ./configure --help
-./configure --prefix=/tmp/usr
+./configure --prefix=/tmp/usr --mandir=/tmp/man --docdir=/tmp/doc
 make -j2
 make install
 
