@@ -55,8 +55,6 @@ time tar -jcf ${filename}.tar.bz2 usr
 
 base64 -w 0 ${filename}.tar.bz2 > ${filename}.tar.bz2.base64.txt
 
-ls -lang
-
 set +x
 base64_text=$(cat /tmp/${filename}.tar.bz2.base64.txt)
 
