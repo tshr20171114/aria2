@@ -32,4 +32,6 @@ wait
 
 cat file.* > filedata.dat
 
+base64 -w 0 filedata.dat filedata.dat.base64.txt
+
 ls -lang
