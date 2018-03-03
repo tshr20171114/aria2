@@ -48,17 +48,20 @@ make install
 # ***** tar *****
 
 cd /tmp
-time tar -jcf usr_aria2.tar.bz2 usr
 
-base64 -w 0 usr_aria2.tar.bz2 > usr_aria2.tar.bz2.base64.txt
+filename=usr_aria2
+
+time tar -jcf ${filename}.tar.bz2 usr
+
+base64 -w 0 ${filename}.tar.bz2 > ${filename}.tar.bz2.base64.txt
 
 ls -lang
 
 set +x
-base64_text=$(cat /tmp/usr_gettext.tar.bz2.base64.txt)
+base64_text=$(cat /tmp/${filename}.tar.bz2.base64.txt)
 
 psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
-INSERT INTO t_files (file_name, file_base64_text) VALUES ('usr_aria2.tar.bz2', '${base64_text}');
+INSERT INTO t_files (file_name, file_base64_text) VALUES ('${filename}.tar.bz2', '${base64_text}');
 __HEREDOC__
 set -x
 
