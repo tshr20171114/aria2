@@ -36,10 +36,10 @@ if [ ! -v HOME_FQDN ]; then
   exit
 fi
 
-if [ ! -v HEROKU_APP_NAME ]; then
-  echo "Error : HEROKU_APP_NAME not defined."
-  exit
-fi
+# if [ ! -v HEROKU_APP_NAME ]; then
+#   echo "Error : HEROKU_APP_NAME not defined."
+#   exit
+# fi
 
 htpasswd -c -b .htpasswd ${BASIC_USER} ${BASIC_PASSWORD}
 
