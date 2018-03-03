@@ -58,6 +58,8 @@ tar xf /tmp/usr.tar.bz2 -C /tmp/usr --strip=1
 
 ls -Rlang usr
 
+ldd /tmp/usr/bin/aria2c
+
 # ***** env *****
 
 export HOME2=${PWD}
