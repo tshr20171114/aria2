@@ -2,7 +2,7 @@
 
 set -x
 
-len=$(curl -I $url | grep Content-Length | awk '{print $2}')
+len=$(curl -I $url | grep Content-Length | tr '\r' ' ' | awk '{print $2}')
 
 echo ${len}
 
