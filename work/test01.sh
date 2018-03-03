@@ -15,8 +15,14 @@ range2=$(($split - 1))
 
 for ((i=0; i < 19; i++)); do
   echo $i $range1 $range2
+  curl -r $range1 $range2 -o file.$i $url &
   range1=$(($range2 + 1))
   range2=$(($range2 + $split))
 done
 
 echo $range1
+curl -r $range1- -o file.20 $url &
+
+wait
+
+ls -lang
