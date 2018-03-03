@@ -17,10 +17,9 @@ postgres_dbname=$(echo ${DATABASE_URL} | awk -F'/' '{print $NF}')
 export PGPASSWORD=${postgres_password}
 
 psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
-CREATE TABLE t_file (
- file_id int primary key
-,file_name character varying(255) NOT NULL
-,file_data text
+CREATE TABLE t_files (
+  file_name character varying(255) NOT NULL
+ ,file_base64_text text NOT NULL
 );
 __HEREDOC__
 cat /tmp/sql_result.txt
