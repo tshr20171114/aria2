@@ -38,7 +38,7 @@ SELECT file_base64_text
  WHERE file_name = 'usr_aria2.tar.bz2'
 __HEREDOC__
 
-psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
+psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result2.txt << __HEREDOC__
 DELETE
   FROM t_files
  WHERE file_name = 'usr_aria2.tar.bz2'
