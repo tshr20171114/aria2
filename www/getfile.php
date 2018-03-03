@@ -11,4 +11,11 @@ SELECT file_data
  WHERE file_name = 'filedata.dat'
 __HEREDOC__;
 
+$statement = $pdo->prepare($sql);
+$statement->execute();
+
+$result = $statement->fetch();
+
+file_put_contents($arg . '.br', base64_decode($result['file_data']));
+
 ?>
