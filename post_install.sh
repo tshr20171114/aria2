@@ -14,11 +14,6 @@ postgres_password=$(echo ${DATABASE_URL} | grep -o '/.\+@' | grep -o ':.\+' | se
 postgres_server=$(echo ${DATABASE_URL} | awk -F'@' '{print $2}' | awk -F':' '{print $1}')
 postgres_dbname=$(echo ${DATABASE_URL} | awk -F'/' '{print $NF}')
 
-echo ${postgres_user}
-echo ${postgres_password}
-echo ${postgres_server}
-echo ${postgres_dbname}
-
 export PGPASSWORD=${postgres_password}
 
 psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
