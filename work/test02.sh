@@ -30,9 +30,9 @@ curl -r ${range1}-${len} -o file.${loop_end} $url &
 
 wait
 
-cat file.* > filedata.dat
+cat file.* > /tmp/filedata.dat
 
-base64 -w 0 filedata.dat > filedata.dat.base64.txt
+base64 -w 0 /tmp/filedata.dat > /tmp/filedata.dat.base64.txt
 
 ls -lang
 
@@ -52,9 +52,9 @@ DELETE
 __HEREDOC__
 
 set +x
-base64_text=$(cat /tmp/${filename}.tar.bz2.base64.txt)
+base64_text=$(cat /tmp/filedata.dat.base64.txt)
 
 psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
-INSERT INTO t_files (file_name, file_base64_text) VALUES ('${filename}.tar.bz2', '${base64_text}');
+INSERT INTO t_files (file_name, file_base64_text) VALUES ('filedata.dat', '${base64_text}');
 __HEREDOC__
 set -x
