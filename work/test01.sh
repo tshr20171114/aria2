@@ -21,7 +21,7 @@ for ((i=0; i < 19; i++)); do
 done
 
 echo $range1
-curl -r ${range1}-${len} -o file.20 $url &
+curl -r ${range1}-${len} -o file.19 $url &
 
 wait
 
