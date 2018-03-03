@@ -7,6 +7,8 @@ start_date=$(date)
 
 chmod 755 ./start_web.sh
 
+export HOME2=${PWD}
+
 # ***** postgresql *****
 
 postgres_user=$(echo ${DATABASE_URL} | awk -F':' '{print $2}' | sed -e 's/\///g')
@@ -56,13 +58,19 @@ set -x
 base64 -d /tmp/usr.tar.bz2.base64.txt > /tmp/usr.tar.bz2
 tar xf /tmp/usr.tar.bz2 -C /tmp/usr --strip=1
 
-ls -Rlang usr
-
 ldd /tmp/usr/bin/aria2c
+
+if [ -e /tmp/usr/bin/aria2c ]; then
+  mkdir ${HOME2}/bin
+  cp /tmp/usr/bin/aria2c ${HOME2}/bin/
+  chmod +x ${HOME2}/bin/aria2c
+  exit
+fi
+
+ls -Rlang usr
 
 # ***** env *****
 
-export HOME2=${PWD}
 export PATH="/tmp/usr2/bin:/tmp/usr/bin:${PATH}"
 export LD_LIBRARY_PATH=/tmp/usr/lib
 
