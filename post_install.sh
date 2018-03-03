@@ -65,7 +65,7 @@ cd aria2-1.33.1
 
 ./configure --help
 ./configure --prefix=/tmp/usr --mandir=/tmp/man --docdir=/tmp/doc
-make -j2
+make -j$(grep -c -e processor /proc/cpuinfo)
 make install
 
 # ***** tar *****
