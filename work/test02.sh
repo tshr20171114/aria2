@@ -14,8 +14,9 @@ range1=0
 range2=$(($split - 1))
 
 for ((i=0; i < 49; i++)); do
-  echo $i $range1 $range2
-  curl -r ${range1}-${range2} -o file.$i $url &
+  suffix=$(printf "%02d" $i)
+  echo $i $suffix $range1 $range2
+  curl -r ${range1}-${range2} -o file.$suffix $url &
   range1=$(($range2 + 1))
   range2=$(($range2 + $split))
 done
