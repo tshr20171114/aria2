@@ -30,6 +30,14 @@ CREATE TABLE t_file (
 __HEREDOC__
 cat /tmp/sql_result.txt
 
+psql -U ${postgres_user} -d ${postgres_dbname} -h ${postgres_server} > /tmp/sql_result.txt << __HEREDOC__
+SELECT file_name
+      ,length(file_base64_text)
+  FROM t_files
+ ORDER BY file_name
+__HEREDOC__
+cat /tmp/sql_result.txt
+
 # ***** aria2 *****
 
 cd /tmp
