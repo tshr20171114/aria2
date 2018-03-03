@@ -30,6 +30,6 @@ curl -r ${range1}-${len} -o file.${loop_end} $url &
 
 wait
 
-cat file.* filedata.dat
+cat file.* > filedata.dat
 
 ls -lang
