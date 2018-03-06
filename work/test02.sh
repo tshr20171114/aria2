@@ -36,6 +36,8 @@ base64 -w 0 /tmp/filedata.dat > /tmp/filedata.dat.base64.txt
 
 ls -lang
 
+exit
+
 # ***** postgresql *****
 
 postgres_user=$(echo ${DATABASE_URL} | awk -F':' '{print $2}' | sed -e 's/\///g')
