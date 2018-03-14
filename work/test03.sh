@@ -30,7 +30,7 @@ for ((i=0; i < ${loop_end}; i++)); do
 done
 
 echo $range1
-curl -r ${range1}-${len} -o file.${loop_end} $url &
+curl -r ${range1}-${len} -o /tmp/${tmp_dir}/file.${loop_end} $url &
 
 wait
 
