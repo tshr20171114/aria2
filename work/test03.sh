@@ -2,7 +2,7 @@
 
 set -x
 
-count=20
+count=40
 
 len=$(curl -I $url | grep Content-Length | tr '\r' ' ' | awk '{print $2}')
 
@@ -22,7 +22,7 @@ tmp_dir=$(date "+%Y%m%d%H%M%S")
 mkdir 666 /tmp/${tmp_dir}
 
 for ((i=0; i < ${loop_end}; i++)); do
-  suffix=$(printf "%03d" $i)
+  suffix=$(printf "%02d" $i)
   echo $i $suffix $range1 $range2
   curl -r ${range1}-${range2} -o /tmp/${tmp_dir}/file.$suffix $url &
   range1=$(($range2 + 1))
