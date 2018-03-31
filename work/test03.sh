@@ -24,13 +24,13 @@ mkdir /tmp/${tmp_dir}
 for ((i=0; i < ${loop_end}; i++)); do
   suffix=$(printf "%02d" $i)
   echo $i $suffix $range1 $range2
-  curl --retry 10 -r ${range1}-${range2} -o /tmp/${tmp_dir}/file.$suffix $url &
+  curl -r ${range1}-${range2} -o /tmp/${tmp_dir}/file.$suffix $url &
   range1=$(($range2 + 1))
   range2=$(($range2 + $split))
 done
 
 echo $range1
-curl --retry 10 -r ${range1}-${len} -o /tmp/${tmp_dir}/file.${loop_end} $url &
+curl -r ${range1}-${len} -o /tmp/${tmp_dir}/file.${loop_end} $url &
 
 wait
 
