@@ -19,7 +19,7 @@ loop_end=$(($count - 1))
 
 tmp_dir=$(date "+%Y%m%d%H%M%S")
 
-mkdir 666 /tmp/${tmp_dir}
+mkdir -m 666 /tmp/${tmp_dir}
 
 for ((i=0; i < ${loop_end}; i++)); do
   suffix=$(printf "%02d" $i)
